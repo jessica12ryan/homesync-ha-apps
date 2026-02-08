@@ -1,9 +1,9 @@
 {
   "github_beta": "false",
-  "last_update": "21-01-2026",
+  "last_update": "08-02-2026",
   "repository": "jessica12ryan/homesync-ha-apps",
   "slug": "app-win11",
   "source": "github",
   "upstream_repo": "dockur/windows",
-  "upstream_version": "1.0.0"
+  "upstream_version": "1.1.0"
 }
