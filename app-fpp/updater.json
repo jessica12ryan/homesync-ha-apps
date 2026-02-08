@@ -1,8 +1,8 @@
 {
   "github_beta": "false",
   "last_update": "27-01-2026",
-  "repository": "jessica12ryan/homesync-addons",
-  "slug": "addon-fpp",
+  "repository": "jessica12ryan/homesync-ha-apps",
+  "slug": "app-fpp",
   "source": "github",
   "upstream_repo": "falconchristmas/fpp",
   "upstream_version": "master"

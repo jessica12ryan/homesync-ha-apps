@@ -1,6 +1,6 @@
-# Windows 11 Add-on for Home Assistant
+# Windows 11 App for Home Assistant
 
-This add-on allows you to run a Windows 11 environment inside Home Assistant using [Dockur Windows](https://github.com/dockur/windows) with noVNC access.
+This app allows you to run a Windows 11 environment inside Home Assistant using [Dockur Windows](https://github.com/dockur/windows) with noVNC access.
 
 ## Features
 
@@ -15,12 +15,12 @@ This add-on allows you to run a Windows 11 environment inside Home Assistant usi
 
 ## Installation
 
-Open the addon and then click install. 
-It is recommended that you turn off protected mode before starting the addon.
+Open the app and then click install. 
+It is recommended that you turn off protected mode before starting the app.
 
 ## Usage
 
-- Open from the Home Assistant Add-on panel
+- Open from the Home Assistant App panel
 - Or access externally at `http://<HA-IP>:8006/vnc.html` (if ingress is disabled)
 
 ## Troubleshooting
@@ -37,4 +37,4 @@ It is recommended that you turn off protected mode before starting the addon.
 [aarch64-shield]: https://img.shields.io/badge/aarch64-no-red.svg
 [amd64-shield]: https://img.shields.io/badge/amd64-yes-green.svg
 [repository-badge]: https://img.shields.io/badge/Add%20repository%20to%20my-Home%20Assistant-41BDF5?logo=home-assistant&style=for-the-badge
-[repository-url]: https://my.home-assistant.io/redirect/supervisor_add_addon_repository/?repository_url=https%3A%2F%2Fgithub.com%2Fjessica12ryan%2Fhomesync-addons
+[repository-url]: https://my.home-assistant.io/redirect/supervisor_add_addon_repository/?repository_url=https%3A%2F%2Fgithub.com%2Fjessica12ryan%2Fhomesync-ha-apps

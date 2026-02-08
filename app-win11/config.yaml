@@ -1,8 +1,8 @@
-name: "Windows XP"
-description: "Run Windows XP in Docker with browser-based access"
+name: "Windows 11"
+description: "Run Windows 11 in Docker with browser-based access"
 version: "1.0.0"
-slug: "addon-winxp"
-url: "https://github.com/jessica12ryan/homesync-addons"
+slug: "app-win11"
+url: "https://github.com/jessica12ryan/homesync-ha-apps"
 
 arch:
   - amd64
@@ -35,6 +35,6 @@ webui: "http://[HOST]:[PORT:8006]"
 
 environment:
   KVM: "N"
-  DISK_SIZE: "10G"
-  VERSION: "xp"
+  DISK_SIZE: "32G"
+  VERSION: "11"
   LANGUAGE: "English"

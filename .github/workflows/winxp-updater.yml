@@ -1,11 +1,11 @@
-name: Update Addon Metadata
+name: Update App Metadata
 
 on:
   push:
     branches:
       - main
     paths:
-      - 'addon-winxp/config.yaml'
+      - 'app-winxp/config.yaml'
 
 jobs:
   update-metadata:
@@ -21,17 +21,17 @@ jobs:
       - name: Extract Metadata and Update Files
         run: |
           # Extract version from config.yaml
-          VERSION=$(grep '^version:' addon-winxp/config.yaml | head -1 | awk '{print $2}' | tr -d '"')
+          VERSION=$(grep '^version:' app-winxp/config.yaml | head -1 | awk '{print $2}' | tr -d '"')
           DATE=$(date +'%d-%m-%Y')
           REPO="${{ github.repository }}"
           
           # 1. Create updater.json
-          cat <<EOF > addon-winxp/updater.json
+          cat <<EOF > app-winxp/updater.json
           {
             "github_beta": "false",
             "last_update": "$DATE",
             "repository": "$REPO",
-            "slug": "addon-winxp",
+            "slug": "app-winxp",
             "source": "github",
             "upstream_repo": "dockur/windows",
             "upstream_version": "$VERSION"
@@ -39,10 +39,10 @@ jobs:
           EOF
 
           # 2. Update CHANGELOG.md (Prepends newest version to the top)
-          if ! grep -q "## $VERSION" addon-winxp/CHANGELOG.md; then
+          if ! grep -q "## $VERSION" app-winxp/CHANGELOG.md; then
             TEMP_CHANGELOG=$(mktemp)
-            echo -e "## $VERSION ($DATE)\n\n- Updated addon to version $VERSION\n\n$(cat addon-winxp/CHANGELOG.md)" > "$TEMP_CHANGELOG"
-            mv "$TEMP_CHANGELOG" addon-winxp/CHANGELOG.md
+            echo -e "## $VERSION ($DATE)\n\n- Updated app to version $VERSION\n\n$(cat app-winxp/CHANGELOG.md)" > "$TEMP_CHANGELOG"
+            mv "$TEMP_CHANGELOG" app-winxp/CHANGELOG.md
           fi
 
       - name: Sync with Remote
@@ -56,4 +56,4 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "chore: update updater.json and CHANGELOG"
-          file_pattern: 'addon-winxp/updater.json addon-winxp/CHANGELOG.md'
+          file_pattern: 'app-winxp/updater.json app-winxp/CHANGELOG.md'

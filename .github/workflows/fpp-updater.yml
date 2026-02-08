@@ -1,11 +1,11 @@
-name: Update Addon Metadata
+name: Update App Metadata
 
 on:
   push:
     branches:
       - main
     paths:
-      - 'addon-fpp/config.yaml'
+      - 'app-fpp/config.yaml'
 
 jobs:
   update-metadata:
@@ -21,17 +21,17 @@ jobs:
       - name: Extract Metadata and Update Files
         run: |
           # Extract version from config.yaml
-          VERSION=$(grep '^version:' addon-fpp/config.yaml | head -1 | awk '{print $2}' | tr -d '"')
+          VERSION=$(grep '^version:' app-fpp/config.yaml | head -1 | awk '{print $2}' | tr -d '"')
           DATE=$(date +'%d-%m-%Y')
           REPO="${{ github.repository }}"
           
           # 1. Create updater.json
-          cat <<EOF > addon-fpp/updater.json
+          cat <<EOF > app-fpp/updater.json
           {
             "github_beta": "false",
             "last_update": "$DATE",
             "repository": "$REPO",
-            "slug": "addon-fpp",
+            "slug": "app-fpp",
             "source": "github",
             "upstream_repo": "falconchristmas/fpp",
             "upstream_version": "$VERSION"
@@ -39,10 +39,10 @@ jobs:
           EOF
 
           # 2. Update CHANGELOG.md (Prepends newest version to the top)
-          if ! grep -q "## $VERSION" addon-fpp/CHANGELOG.md; then
+          if ! grep -q "## $VERSION" app-fpp/CHANGELOG.md; then
             TEMP_CHANGELOG=$(mktemp)
-            echo -e "## $VERSION ($DATE)\n\n- Updated addon to version $VERSION\n\n$(cat addon-fpp/CHANGELOG.md)" > "$TEMP_CHANGELOG"
-            mv "$TEMP_CHANGELOG" addon-fpp/CHANGELOG.md
+            echo -e "## $VERSION ($DATE)\n\n- Updated app to version $VERSION\n\n$(cat app-fpp/CHANGELOG.md)" > "$TEMP_CHANGELOG"
+            mv "$TEMP_CHANGELOG" app-fpp/CHANGELOG.md
           fi
 
       - name: Sync with Remote
@@ -56,4 +56,4 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "chore: update updater.json and CHANGELOG"
-          file_pattern: 'addon-fpp/updater.json addon-fpp/CHANGELOG.md'
+          file_pattern: 'app-fpp/updater.json app-fpp/CHANGELOG.md'
